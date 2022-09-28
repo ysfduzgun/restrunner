@@ -1,0 +1,39 @@
+{
+    "Commands": {
+        "1": {
+            "command": "echo yusuf",
+            "comment": "print yusuf to screen",
+            "name": "test1"
+        },
+        "2": {
+            "command": "uptime",
+            "comment": "show computer uptime",
+            "name": "test2"
+        },
+        "3": {
+            "command": "ls /tmp",
+            "comment": "listing /tmp folder",
+            "name": "test3"
+        }
+    },
+    "Tasks": {
+        "1": {
+            "date": "2022-09-26-18-21-14",
+            "file": "2022-09-26-15-30-57-komut-adi.log",
+            "name": "test2",
+            "status": 1
+        },
+        "2": {
+            "date": "2022-09-26-18-21-14",
+            "file": "2022-09-26-15-32-01-komut-adi.log",
+            "name": "test3",
+            "status": 0
+        },
+        "3": {
+            "date": "2022-09-26-18-21-14",
+            "file": "2022-09-26-15-35-22-komut-adi.log",
+            "name": "test1",
+            "status": 2
+        }
+    }
+}
