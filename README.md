@@ -1,5 +1,7 @@
 # restrunner
 
+A tool for run linux command with flask rest api.
+
 Planned features:
 * Completely restfull run command
 * Ability to work asynchronously
