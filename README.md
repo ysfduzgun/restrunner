@@ -1,25 +1,19 @@
-# lider-repoman-api
-Pardus repository and package management !
-This project was created for Liderahenk Central Management System. It will be designed to be easily used from Liderahenk Web Panel.
+# restrunner
+
+A tool for run linux command with flask rest api.
 
 Planned features:
-* Completely restfull
+* Completely restfull run command
 * Ability to work asynchronously
 * View all task history
 * Live monitoring of the status of ongoing tasks(streaming log)
 * Cloning Pardus official repos
-* Creating personal repos
-* Adding, deleting and updating packages to this created repo
-* Merge this personal repository created with Pardus repository
-* Publishing these repositories
-* Take snapshots of repositories
-* Restore from snapshots
 
 Testing:
 ```
 pip install flask-restful
 git clone
-cd lider-repoman-api
+cd restrunner
 python3 src/server.py
 ```
 
