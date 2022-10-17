@@ -7,7 +7,6 @@ Planned features:
 * Ability to work asynchronously
 * View all task history
 * Live monitoring of the status of ongoing tasks(streaming log)
-* Cloning Pardus official repos
 
 Testing:
 ```
