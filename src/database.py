@@ -1,10 +1,5 @@
 """Import tinydb and datetime"""
-from datetime import datetime
 from tinydb import TinyDB, Query
-
-def date_now():
-    """Return time with speacial format for logging"""
-    return datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
 
 db_json = TinyDB('db.json', sort_keys=True, indent=4, separators=(',', ': '))
 table_commands = db_json.table('Commands')
@@ -35,6 +30,9 @@ def search_task(status):
     if len(res) != 0 :
         return res
     return 0
+
+def new_task(command):
+    pass
 
 def get_all_tasks():
     """Return all commands in db.json in list type."""

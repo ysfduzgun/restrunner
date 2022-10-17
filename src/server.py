@@ -4,9 +4,7 @@ from flask_restful import abort, Api, Resource
 
 # Import database and command
 import database
-# import command
-
-COMMAND_LIST = database.get_all_commands()
+import command
 
 # Setup flask rest
 app = Flask(__name__)
@@ -22,7 +20,8 @@ class CommandList(Resource):
     """Flask Restfull class for getting command list."""
     def get(self):
         """Flask restfull standart get function."""
-        return COMMAND_LIST
+        command_list = database.get_all_commands()
+        return command_list
 
 
 class RunCommand(Resource):
@@ -32,7 +31,7 @@ class RunCommand(Resource):
         """Flask restfull standart get function."""
         val = database.search_command(name)
         if val != 0 :
-            #command.run(val['command'])
+            command.cmd_run(val['name'], val['command'])
             return val
         else:
             abort_doesnt_exist(name)
