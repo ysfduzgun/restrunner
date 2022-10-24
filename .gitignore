@@ -129,4 +129,6 @@ dmypy.json
 .pyre/
 
 # my tmp
-src/tmp
+tmp
+# my logs
+data/log
