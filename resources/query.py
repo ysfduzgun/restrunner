@@ -1,8 +1,7 @@
 from flask_restful import Resource
 from flask_restful import abort
 
-from common import db
-from common.cmd import run
+from restrunner.common import db
 
 def abort_doesnt_exist(name):
     """Abort request if doesnt exist."""

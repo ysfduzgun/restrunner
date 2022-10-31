@@ -2,10 +2,6 @@
 from flask import Flask
 from flask_restful import Api
 
-import sys
-sys.path.append("../.")
-
-
 from restrunner.resources.query import CommandList
 from restrunner.resources.query import SearchTask
 from restrunner.resources.restrunner import RunCommand
@@ -27,6 +23,9 @@ class Help():
 
 # Setup the Api resource routing help
 #api.add_resource(Help, '/help')
+
+
+
 # Flask automatically creates a /static/<path:filename> route
 #that will serve any filename under the static folder
 
@@ -39,6 +38,24 @@ api.add_resource(RunCommand, '/commands/run/<name>')
 # Setup the Api resource routing realated tasks
 api.add_resource(SearchTask, '/tasks/<int:status>')
 
+class RestRunner:
+    __conf = {
+    "port": 5000,
+    "debug": False,
+    "data_folder": "data"
+    }
+    __setters = ["port", "debug", "data_folder"]
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    @staticmethod
+    def config(name):
+        return RestRunner.__conf[name]
+
+    @staticmethod
+    def set(name, value):
+        if name in RestRunner.__setters:
+            RestRunner.__conf[name] = value
+        else:
+            raise NameError("Name not accepted in set() method")
+
+    def run(self):
+        app.run()

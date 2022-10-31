@@ -6,14 +6,9 @@ from threading import Thread
 from restrunner.common import db
 from restrunner.common.cmd import run
 
-# from ... common import db
-# from ... common.cmd import run
-
-
 def abort_doesnt_exist(name):
     """Abort request if doesnt exist."""
     abort(404, message=f"{name} doesn't exist")
-
 
 class RunCommand(Resource):
     """Flask Restfull class for running command."""
