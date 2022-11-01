@@ -131,4 +131,4 @@ dmypy.json
 # my tmp
 tmp
 # my logs
-data/log
+tests/data

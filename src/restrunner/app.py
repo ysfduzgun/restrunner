@@ -1,10 +1,13 @@
 """Importing standart libs"""
 from flask import Flask
 from flask_restful import Api
+import inspect
 
 from restrunner.resources.query import CommandList
 from restrunner.resources.query import SearchTask
 from restrunner.resources.restrunner import RunCommand
+
+from restrunner.common.data import create_data_folder
 
 # Setup flask rest
 app = Flask(__name__)
@@ -40,11 +43,12 @@ api.add_resource(SearchTask, '/tasks/<int:status>')
 
 class RestRunner:
     __conf = {
-    "port": 5000,
-    "debug": False,
-    "data_folder": "data"
+        "port": 5000,
+        "debug": False,
+        "host": '127.0.0.1',
+        "data_folder": ""
     }
-    __setters = ["port", "debug", "data_folder"]
+    __setters = ["port", "debug", "host", "data_folder"]
 
     @staticmethod
     def config(name):
@@ -58,4 +62,14 @@ class RestRunner:
             raise NameError("Name not accepted in set() method")
 
     def run(self):
-        app.run()
+        if(RestRunner.__conf['data_folder'] == ""):
+            runner_path = inspect.stack()[1][1]
+            runner_path = runner_path[0:runner_path.rindex("/")]
+            RestRunner.__conf['data_folder'] = runner_path+"/data"
+            create_data_folder(runner_path)
+            print(RestRunner.__conf['data_folder'])
+        else:
+            print("no")
+        app.run(debug=RestRunner.__conf['debug'],
+        port=RestRunner.__conf['port'],
+        host=RestRunner.__conf['host'])
