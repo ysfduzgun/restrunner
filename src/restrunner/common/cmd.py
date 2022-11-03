@@ -4,7 +4,7 @@ from datetime import datetime
 
 # import database
 from restrunner.common import db
-from restrunner.common import data
+from restrunner.conf import settings as Settings
 
 def get_date_now():
     """Return time with speacial format for logging"""
@@ -13,7 +13,8 @@ def get_date_now():
 def run(name, command):
     print(name+" basladi")
     date_now = get_date_now()
-    log_file = data.get_data_folder()+"log/"+date_now+"-"+name+".log"
+    log_file = Settings.DATA_FOLDER+"/log/"+date_now+"-"+name+".log"
+    print(log_file)
 
     item = { 'sdate': date_now,
         'fdate': -1,

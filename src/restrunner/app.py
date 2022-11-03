@@ -8,6 +8,8 @@ from restrunner.resources.query import SearchTask
 from restrunner.resources.restrunner import RunCommand
 
 from restrunner.common.data import create_data_folder
+from restrunner.common import db
+from restrunner.conf import settings
 
 # Setup flask rest
 app = Flask(__name__)
@@ -62,14 +64,21 @@ class RestRunner:
             raise NameError("Name not accepted in set() method")
 
     def run(self):
-        if(RestRunner.__conf['data_folder'] == ""):
+
+        settings.PORT = RestRunner.__conf["port"]
+        settings.DEBUG = RestRunner.__conf["debug"]
+        settings.HOST = RestRunner.__conf["host"]
+        settings.DATA_FOLDER = RestRunner.__conf["data_folder"]
+
+        if(settings.DATA_FOLDER == ""):
             runner_path = inspect.stack()[1][1]
             runner_path = runner_path[0:runner_path.rindex("/")]
-            RestRunner.__conf['data_folder'] = runner_path+"/data"
-            create_data_folder(runner_path)
-            print(RestRunner.__conf['data_folder'])
+            settings.DATA_FOLDER = runner_path+"/data"
+            create_data_folder(settings.DATA_FOLDER)
         else:
             print("no")
-        app.run(debug=RestRunner.__conf['debug'],
-        port=RestRunner.__conf['port'],
-        host=RestRunner.__conf['host'])
+
+        db.init()
+        app.run(debug=settings.DEBUG,
+                port=settings.PORT,
+                host=settings.HOST)

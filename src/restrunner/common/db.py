@@ -1,18 +1,28 @@
 """Import tinydb and datetime"""
 from tinydb import TinyDB, Query
-from restrunner.common import data
+from restrunner.conf import settings as Settings
 
-commands_json_file = data.get_data_folder()+"commands.json"
-tasks_json_file = data.get_data_folder()+"tasks.json"
+commands_json_file = None
+tasks_json_file = None
+commands = None
+tasks = None
+q = None
 
-commands = TinyDB(commands_json_file, sort_keys=True, indent=4, separators=(',', ': '))
-tasks = TinyDB( tasks_json_file, sort_keys=True, indent=4, separators=(',', ': '))
-q = Query()
+from restrunner.common import db
+
+def init():
+    db.commands_json_file = Settings.DATA_FOLDER+"/commands.json"
+    db.tasks_json_file = Settings.DATA_FOLDER+"/tasks.json"
+
+    db.commands = TinyDB(commands_json_file, sort_keys=True, indent=4, separators=(',', ': '))
+    db.tasks = TinyDB( tasks_json_file, sort_keys=True, indent=4, separators=(',', ': '))
+    db.q = Query()
 
 # Command info operations
 
 def get_all_commands():
     """Return all commands in db.json in list type."""
+    print("------------"+str(commands.all()))
     return commands.all()
 
 def search_command(value):
