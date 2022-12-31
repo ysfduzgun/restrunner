@@ -27,8 +27,9 @@ app.run()
 ```
 python test.py
 ```
+You can edit data_folder/commands.json now.
 
 gel all command
-http://127.0.0.1/commands <br>
+[http://127.0.0.1/commands](http://127.0.0.1:5000/commands) <br>
 run test1 command
-http://127.0.0.1/commands/run/test1
+[http://127.0.0.1/commands/run/test1](http://127.0.0.1:5000/commands/run/test1)
