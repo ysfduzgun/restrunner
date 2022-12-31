@@ -5,6 +5,7 @@ A tool for run linux command with flask rest api.
 
 ```
 virtual env
+source env/bin/activate
 cd env && mkdir test
 cd test && touch test.py
 pip install RestRunner
