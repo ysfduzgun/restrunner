@@ -1,7 +1,7 @@
 """Importing standart libs"""
 from flask import Flask
 from flask_restful import Api
-import inspect
+import inspect, os
 
 from restrunner.resources.query import CommandList
 from restrunner.resources.query import SearchTask
@@ -70,7 +70,7 @@ class RestRunner:
         settings.DATA_FOLDER = RestRunner.__conf["data_folder"]
 
         if(settings.DATA_FOLDER == ""):
-            runner_path = inspect.stack()[1][1]
+            runner_path = os.path.abspath(inspect.stack()[1][1])
             runner_path = runner_path[0:runner_path.rindex("/")]
             settings.DATA_FOLDER = runner_path+"/rr-data"
             data.create_data_folder(settings.DATA_FOLDER)
