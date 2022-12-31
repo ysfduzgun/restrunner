@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "RestRunner"
+version = "0.0.5"
+authors = [
+  { name="Yusuf Düzgün", email="yzduzgun@gmail.com" },
+]
+description = "A tool for run linux command with flask rest api."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "Flask",
+    "Flask_RESTful",
+    "tinydb"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ysfduzgun/restrunner"
+"Bug Tracker" = "https://github.com/ysfduzgun/restrunner/issues"
