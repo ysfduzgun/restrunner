@@ -1,6 +1,7 @@
 """Import tinydb and datetime"""
 from tinydb import TinyDB, Query
 from restrunner.conf import settings as Settings
+import os
 
 commands_json_file = None
 tasks_json_file = None
@@ -15,6 +16,10 @@ def init():
     db.tasks_json_file = Settings.DATA_FOLDER+"/tasks.json"
 
     db.commands = TinyDB(commands_json_file, sort_keys=True, indent=4, separators=(',', ': '))
+    fpath = Settings.DATA_FOLDER+"/commands.json"
+    if os.stat(fpath).st_size == 0:
+        db.commands.insert_multiple(Settings.DEFAULT_COMMANDS)
+    
     db.tasks = TinyDB( tasks_json_file, sort_keys=True, indent=4, separators=(',', ': '))
     db.q = Query()
 

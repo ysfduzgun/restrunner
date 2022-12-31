@@ -7,14 +7,13 @@ from restrunner.resources.query import CommandList
 from restrunner.resources.query import SearchTask
 from restrunner.resources.restrunner import RunCommand
 
-from restrunner.common.data import create_data_folder
+from restrunner.common import data
 from restrunner.common import db
 from restrunner.conf import settings
 
 # Setup flask rest
 app = Flask(__name__)
 api = Api(app)
-
 
 class Help():
     """Flask Restfull class for Help."""
@@ -73,10 +72,11 @@ class RestRunner:
         if(settings.DATA_FOLDER == ""):
             runner_path = inspect.stack()[1][1]
             runner_path = runner_path[0:runner_path.rindex("/")]
-            settings.DATA_FOLDER = runner_path+"/data"
-            create_data_folder(settings.DATA_FOLDER)
+            settings.DATA_FOLDER = runner_path+"/rr-data"
+            data.create_data_folder(settings.DATA_FOLDER)
         else:
-            print("no")
+            settings.DATA_FOLDER = settings.DATA_FOLDER.removesuffix('/')+"/rr-data"
+            data.create_data_folder(settings.DATA_FOLDER)
 
         db.init()
         app.run(debug=settings.DEBUG,
